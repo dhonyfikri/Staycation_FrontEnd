@@ -1,6 +1,6 @@
-import React, { StrictMode } from "react";
-import { Link } from "react-router-dom";
 import propTypes from "prop-types";
+import React from "react";
+import { Link } from "react-router-dom";
 
 const Button = (props) => {
     const className = [props.className];
@@ -41,7 +41,7 @@ const Button = (props) => {
                     rel={
                         props.target === "_blank"
                             ? "noopener noreferrer"
-                            : undefined
+                            : "noreferrer"
                     }
                 >
                     {props.children}

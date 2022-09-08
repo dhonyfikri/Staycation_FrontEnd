@@ -3,8 +3,10 @@ import Hero from "parts/Hero";
 import React, { Component } from "react";
 
 import LandingPageData from "json/landingPage.json";
-import MostPicked from "parts/MostPicked";
 import Categories from "parts/Categories";
+import MostPicked from "parts/MostPicked";
+import Testimony from "parts/Testimony";
+import Footer from "parts/Footer";
 
 class LandingPage extends Component {
     constructor(props) {
@@ -24,6 +26,8 @@ class LandingPage extends Component {
                     data={LandingPageData.mostPicked}
                 />
                 <Categories data={LandingPageData.categories} />
+                <Testimony data={LandingPageData.testimonial} />
+                <Footer />
             </>
         );
     }

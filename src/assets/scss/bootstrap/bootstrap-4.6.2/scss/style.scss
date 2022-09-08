@@ -6,6 +6,7 @@
  */
 
 @import "functions";
+@import "color-variables"; //import color-variables diatas import variables akan memungkankan file variables membaca file color-variables
 @import "variables";
 @import "mixins";
 @import "root";
@@ -55,6 +56,10 @@
 @keyframes hero-frame-animation {
   50%  {transform: translate(-15px, -15px);}
   100% {transform: translate(0px, 0px);}
+}
+@keyframes moved-text-animation {
+  50%  {transform: translate(10%, 0) scale(1.2);}
+  100% {transform: translate(0%, 0) scale(1);}
 }
 
 .brand-text-icon {
@@ -231,5 +236,56 @@ section {
         transform: scale(1);
       }
     }
+  }
+}
+
+.moved-text {
+      animation-name: moved-text-animation;
+      animation-duration: 2s;
+      animation-iteration-count: infinite;
+    }
+
+.testimonial-hero, .testimonial-hero img {
+  width: 365px; height: 500px;
+}
+
+.limited-text-line { /* membatasi jumlah baris pada text */
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 2; /* number of lines to show */
+          line-clamp: 2; 
+  -webkit-box-orient: vertical;
+}
+
+footer {
+  border-top: 1px solid $gray-200;
+  padding-top: 50px;
+
+  .brand-tagline {
+    margin-top: 8px;
+    color: $gray-500;
+    font-weight: 300;
+  }
+
+  .list-group-item {
+    padding: 0.3125rem 0;
+    border: none;
+    a, span {
+      color: $gray-500;
+      font-weight: 300;
+    }
+
+    a {
+      @include hover-focus {
+        color: $gray-800;
+      }
+    }
+  }
+
+  .copyrights {
+    margin: 50px 0;
+    font-weight: 300;
+    color: $gray-500;
   }
 }

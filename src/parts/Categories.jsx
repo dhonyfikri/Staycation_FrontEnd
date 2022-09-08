@@ -10,8 +10,8 @@ const Categories = ({ data }) => {
                     {category.items.length === 0 ? (
                         <div className="item column-12 row-1">
                             {/* hanya percobaan pada bungkus ini */}
-                            <div className="row">
-                                <div className="col-auto align-items-center">
+                            <div className="row h-100 align-items-center">
+                                <div className="col-auto align-items-center moved-text">
                                     There is no property at this category
                                 </div>
                             </div>
