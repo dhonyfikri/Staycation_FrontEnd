@@ -8,7 +8,8 @@ import IcTreasures from "assets/images/icons/ic_treasure.svg";
 
 import Button from "elements/Button";
 import formatNumber from "utils/formatNumber";
-import { Fade, Zoom } from "react-reveal";
+import Fade from "react-reveal/Fade";
+import Zoom from "react-reveal/Zoom";
 
 const Hero = (props) => {
     const showMostPicked = () => {

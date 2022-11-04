@@ -1,7 +1,7 @@
 import Button from "elements/Button";
 import React from "react";
 
-import { Fade } from "react-reveal";
+import Fade from "react-reveal/Fade";
 
 const MostPicked = ({ data, refMostPicked }) => {
     return (
@@ -11,13 +11,13 @@ const MostPicked = ({ data, refMostPicked }) => {
                 <div className="container-grid">
                     {data?.map((item, index) => {
                         return (
-                            <Fade bottom delay={300 * index}>
-                                <div
-                                    key={`mostpicked-${index}`}
-                                    className={`item column-4${
-                                        index === 0 ? " row-2" : " row-1"
-                                    }`}
-                                >
+                            <div
+                                className={`item column-4${
+                                    index === 0 ? " row-2" : " row-1"
+                                }`}
+                                key={`mostpicked-${index}`}
+                            >
+                                <Fade bottom delay={300 * index}>
                                     <div className="card card-featured">
                                         <div className="tag">
                                             ${item.price}{" "}
@@ -45,8 +45,8 @@ const MostPicked = ({ data, refMostPicked }) => {
                                             </span>
                                         </div>
                                     </div>
-                                </div>
-                            </Fade>
+                                </Fade>
+                            </div>
                         );
                     })}
                 </div>

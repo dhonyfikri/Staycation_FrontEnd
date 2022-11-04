@@ -5,5 +5,5 @@ import Button from "./index";
 test("Should not allowed click button in isDisabled is present", () => {
     const { container } = render(<Button isDisabled></Button>);
 
-    // expect(container.querySelector("span.disabled")).toBeInTheDocument();
+    expect(container.querySelector("span.disabled")).toBeInTheDocument();
 });

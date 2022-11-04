@@ -3,7 +3,7 @@ import Star from "elements/Star";
 import React from "react";
 import TestimonyAccent from "../assets/images/testimonial-landingpages-frame.png";
 
-import { Fade } from "react-reveal";
+import Fade from "react-reveal/Fade";
 
 const Testimony = ({ data }) => {
     return (

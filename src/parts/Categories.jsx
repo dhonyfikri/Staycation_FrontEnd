@@ -1,7 +1,7 @@
 import Button from "elements/Button";
 import React from "react";
 
-import { Fade } from "react-reveal";
+import Fade from "react-reveal/Fade";
 
 const Categories = ({ data }) => {
     return data?.map((category, index) => {
@@ -22,11 +22,11 @@ const Categories = ({ data }) => {
                         ) : (
                             category.items?.map((items, index2) => {
                                 return (
-                                    <Fade bottom delay={300 * index2}>
-                                        <div
-                                            className="item column-3 row-1"
-                                            key={`category-${index}-item-${index2}`}
-                                        >
+                                    <div
+                                        className="item column-3 row-1"
+                                        key={`category-${index}-item-${index2}`}
+                                    >
+                                        <Fade bottom delay={300 * index2}>
                                             <div className="card no-border">
                                                 {items.isPopular && (
                                                     <div className="tag">
@@ -62,8 +62,8 @@ const Categories = ({ data }) => {
                                                     </span>
                                                 </div>
                                             </div>
-                                        </div>
-                                    </Fade>
+                                        </Fade>
+                                    </div>
                                 );
                             })
                         )}
