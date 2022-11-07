@@ -1,32 +1,22 @@
-import React, { useState } from "react";
 import propTypes from "prop-types";
-import "./index.scss";
+import React from "react";
 import inputValueAssembly from "utils/inputValueAssembly";
+import "./index.scss";
 
 const InputNumber = (props) => {
     const { value, placeholder, name, min, max, prefix, suffix } = props;
-    const [inputValue, setInputValue] = useState(
-        inputValueAssembly(prefix, value, suffix)
-    );
 
     const onChange = (e) => {
         let elementValue = String(e.target.value);
-        if (prefix) elementValue = elementValue.replace(prefix, "");
-        if (suffix) elementValue = elementValue.replace(suffix, "");
-        elementValue = elementValue.replace("s", "");
-
-        const patternNumeric = new RegExp("[0-9]*");
-        const isNumeric = patternNumeric.test(elementValue);
 
         //ekspresi + sama dengan konversi ke tipe number yaitu short hand ketika membuat Number(value)
-        if (isNumeric && +elementValue <= max && +elementValue >= min) {
+        if (+elementValue <= max && +elementValue >= min) {
             props.onChange({
                 target: {
                     name: name,
                     value: +elementValue,
                 },
             });
-            setInputValue(inputValueAssembly(prefix, elementValue, suffix));
         }
     };
 
@@ -59,14 +49,14 @@ const InputNumber = (props) => {
                     </span>
                 </div>
                 <input
+                    readOnly
                     min={min}
                     max={max}
                     name={name}
                     pattern="[0-9]*"
                     className="form-control"
                     placeholder={placeholder ? placeholder : "0"}
-                    value={String(inputValue)}
-                    onChange={onChange}
+                    value={inputValueAssembly(prefix, value, suffix)}
                 />
                 <div className="input-group-append">
                     <span className="input-group-text plus" onClick={plus}>

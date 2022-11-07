@@ -4,10 +4,13 @@ import { Link } from "react-router-dom";
 
 const Button = (props) => {
     const className = [props.className];
+    if (props.isLight) className.push("btn-light");
     if (props.isPrimary) className.push("btn-primary");
     if (props.isLarge) className.push("btn-lg");
     if (props.isSmall) className.push("btn-sm");
-    if (props.isBlock) className.push("btn-block");
+    if (props.isBlock && props.type === "button") className.push("btn-block");
+    if (props.isBlock && props.type === "link")
+        className.push("w-100 justify-content-center");
     if (props.hasShadow) className.push("btn-shadow");
 
     const onClick = () => {
@@ -81,6 +84,7 @@ Button.propTypes = {
     isDisabled: propTypes.bool,
     isLoading: propTypes.bool,
     isPrimary: propTypes.bool,
+    isLight: propTypes.bool,
     isSmall: propTypes.bool,
     isLarge: propTypes.bool,
     isBlock: propTypes.bool,
