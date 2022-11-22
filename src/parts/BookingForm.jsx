@@ -3,6 +3,7 @@ import { InputDate, InputNumber } from "elements/Form";
 import propTypes from "prop-types";
 import React, { useEffect, useState } from "react";
 import usePreviouseValue from "utils/usePreviouseValue";
+import withRouter from "utils/withRouter";
 
 function BookingForm(props) {
     const [value, setValue] = useState({
@@ -28,6 +29,18 @@ function BookingForm(props) {
                 data: { ...prevState.data, [e.target.name]: e.target.value },
             };
         });
+    };
+
+    const startToBooking = () => {
+        startBooking({
+            _id: props.itemDetails._id,
+            duration: data.duration,
+            date: {
+                startDate: data.date.startDate,
+                endDate: data.date.endDate,
+            },
+        });
+        props.router.navigate("/checkout");
     };
 
     useEffect(() => {
@@ -100,13 +113,14 @@ function BookingForm(props) {
             <Button
                 className="btn"
                 //
-                type="link"
-                href="/checkout"
+                // type="link"
+                // href="/checkout"
                 //
                 hasShadow
                 isPrimary
                 isBlock
-                onClick={startBooking}
+                type="button"
+                onClick={startToBooking}
             >
                 Continue to Book
             </Button>
@@ -114,7 +128,7 @@ function BookingForm(props) {
     );
 }
 
-export default BookingForm;
+export default withRouter(BookingForm);
 
 BookingForm.propTypes = {
     itemDetails: propTypes.object,

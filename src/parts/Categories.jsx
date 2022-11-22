@@ -10,7 +10,7 @@ const Categories = ({ data }) => {
                 <Fade>
                     <h4 className="mb-3 font-weight-medium">{category.name}</h4>
                     <div className="container-grid">
-                        {category.items.length === 0 ? (
+                        {category.itemId?.length === 0 ? (
                             <div className="item column-12 row-1">
                                 {/* hanya percobaan pada bungkus ini */}
                                 <div className="row h-100 align-items-center">
@@ -20,7 +20,7 @@ const Categories = ({ data }) => {
                                 </div>
                             </div>
                         ) : (
-                            category.items?.map((items, index2) => {
+                            category.itemId?.map((items, index2) => {
                                 return (
                                     <div
                                         className="item column-3 row-1"
@@ -41,8 +41,12 @@ const Categories = ({ data }) => {
                                                     style={{ height: 180 }}
                                                 >
                                                     <img
-                                                        src={items.imageUrl}
-                                                        alt={items.name}
+                                                        src={
+                                                            items.imageId[0]
+                                                                ? `${process.env.REACT_APP_HOST}/${items.imageId[0].imageUrl}`
+                                                                : ""
+                                                        }
+                                                        alt={items.title}
                                                         className="img-cover"
                                                     />
                                                 </figure>
@@ -53,7 +57,7 @@ const Categories = ({ data }) => {
                                                         className="stretched-link d-block text-gray-800"
                                                     >
                                                         <h5 className="h4">
-                                                            {items.name}
+                                                            {items.title}
                                                         </h5>
                                                     </Button>
                                                     <span className="text-gray-500">

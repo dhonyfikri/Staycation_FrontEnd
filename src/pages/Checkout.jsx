@@ -10,9 +10,13 @@ import Completed from "parts/Checkout/Completed";
 import Payment from "parts/Checkout/Payment";
 import Header from "parts/Header";
 import React, { useEffect, useState } from "react";
+import { connect } from "react-redux";
 import { Fade } from "react-reveal";
+import { useNavigate } from "react-router-dom";
 
 function Checkout(props) {
+    const navigate = useNavigate();
+    const { checkout } = props;
     const [data, setData] = useState({
         firstName: "",
         lastName: "",
@@ -29,10 +33,6 @@ function Checkout(props) {
 
     const onStepChange = () => {
         window.scrollTo(0, 0);
-    };
-
-    const checkout = {
-        duration: 3,
     };
 
     const steps = {
@@ -71,6 +71,33 @@ function Checkout(props) {
         document.title = "Booking Page";
         window.scrollTo(0, 0);
     }, []);
+
+    if (!checkout) {
+        return (
+            <div className="container">
+                <div
+                    className="row align-items-center justify-content-center text-center"
+                    style={{ height: "100vh" }}
+                >
+                    <div className="col-3">
+                        Pilih kamar dulu
+                        <div>
+                            <Button
+                                className="btn mt-5"
+                                type="button"
+                                isLight
+                                onClick={() => {
+                                    navigate(-1);
+                                }}
+                            >
+                                Back
+                            </Button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        );
+    }
 
     return (
         <>
@@ -167,4 +194,8 @@ function Checkout(props) {
     );
 }
 
-export default Checkout;
+const mapStateToProps = (state) => ({
+    checkout: state.checkout,
+});
+
+export default connect(mapStateToProps)(Checkout);

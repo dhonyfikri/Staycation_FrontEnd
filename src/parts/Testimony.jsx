@@ -16,7 +16,7 @@ const Testimony = ({ data }) => {
                             style={{ margin: `30px 0 0 30px` }}
                         >
                             <img
-                                src={data.imageUrl}
+                                src={`http://my-staycation-admin.herokuapp.com/${data.imageUrl}`}
                                 alt="Testimonial"
                                 className="position-absolute"
                                 style={{
@@ -35,7 +35,7 @@ const Testimony = ({ data }) => {
                     <div className="col">
                         <h4 style={{ marginBottom: 40 }}>{data.name}</h4>
                         <Star
-                            value={data.rate}
+                            value={data.rating}
                             width={35}
                             height={35}
                             spacing={4}
