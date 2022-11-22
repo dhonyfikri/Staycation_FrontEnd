@@ -4,7 +4,6 @@ import Controller from "elements/Stepper/Controller";
 import MainContent from "elements/Stepper/MainContent";
 import Meta from "elements/Stepper/Meta";
 import Numbering from "elements/Stepper/Numbering";
-import ItemDetails from "json/itemDetails.json";
 import BookingInformation from "parts/Checkout/BookingInformation";
 import Completed from "parts/Checkout/Completed";
 import Payment from "parts/Checkout/Payment";
@@ -16,7 +15,7 @@ import { useNavigate } from "react-router-dom";
 
 function Checkout(props) {
     const navigate = useNavigate();
-    const { checkout } = props;
+    const { checkout, page } = props;
     const [data, setData] = useState({
         firstName: "",
         lastName: "",
@@ -33,38 +32,6 @@ function Checkout(props) {
 
     const onStepChange = () => {
         window.scrollTo(0, 0);
-    };
-
-    const steps = {
-        bookingInformation: {
-            title: "Booking Information",
-            description: "Please fill up the blank field below",
-            content: (
-                <BookingInformation
-                    data={data}
-                    checkout={checkout}
-                    ItemDetails={ItemDetails}
-                    onChange={onChange}
-                />
-            ),
-        },
-        payment: {
-            title: "Payment",
-            description: "Kindly follow the instructions below",
-            content: (
-                <Payment
-                    data={data}
-                    ItemDetails={ItemDetails}
-                    checkout={checkout}
-                    onChange={onChange}
-                />
-            ),
-        },
-        completed: {
-            title: "Yay! Completed",
-            description: null,
-            content: <Completed />,
-        },
     };
 
     useEffect(() => {
@@ -98,6 +65,38 @@ function Checkout(props) {
             </div>
         );
     }
+
+    const steps = {
+        bookingInformation: {
+            title: "Booking Information",
+            description: "Please fill up the blank field below",
+            content: (
+                <BookingInformation
+                    data={data}
+                    checkout={checkout}
+                    ItemDetails={page[checkout._id]}
+                    onChange={onChange}
+                />
+            ),
+        },
+        payment: {
+            title: "Payment",
+            description: "Kindly follow the instructions below",
+            content: (
+                <Payment
+                    data={data}
+                    ItemDetails={page[checkout._id]}
+                    checkout={checkout}
+                    onChange={onChange}
+                />
+            ),
+        },
+        completed: {
+            title: "Yay! Completed",
+            description: null,
+            content: <Completed />,
+        },
+    };
 
     return (
         <>
@@ -137,7 +136,7 @@ function Checkout(props) {
                                         type="link"
                                         isBlock
                                         isLight
-                                        href={`/properties/${ItemDetails._id}`}
+                                        href={`/properties/${checkout._id}`}
                                     >
                                         Cancel
                                     </Button>
@@ -196,6 +195,7 @@ function Checkout(props) {
 
 const mapStateToProps = (state) => ({
     checkout: state.checkout,
+    page: state.page,
 });
 
 export default connect(mapStateToProps)(Checkout);
